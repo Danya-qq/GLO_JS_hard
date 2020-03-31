@@ -4,7 +4,7 @@ let lang = 'en',
 daysRu = ['Понедельник', 'Вторник', 'Среда', 'Чертверг', 'Пятница',
 'Суббота', 'Воскресенье'],
 daysEn = ['Sunday', 'Monday', 'Tuesday', 'Wednesday',
-'Thuesday', 'Friday', 'saturday'];
+'Thuesday', 'Friday', 'Saturday'];
 
  if (lang == 'ru') {
      console.log(daysRu);
@@ -22,12 +22,13 @@ daysEn = ['Sunday', 'Monday', 'Tuesday', 'Wednesday',
           break;   
  };
 
-let arrDays = [[daysEn], [daysRu]];
-let result = lang == 'en' ? arrDays[0] : arrDays[1];
+let objDays = {
+    "en": daysEn,
+    "ru": daysRu,
+};
 
-console.log(result); // правильно ли я понял условие задания?
+console.log(objDays[lang]);
 
-// 2)
 
 let namePerson = 'Даня';
 
@@ -35,4 +36,5 @@ let name = (namePerson == 'Артем') ? 'Директор' :
 (namePerson == 'Максим') ? 'Преподаватель' : 'студент';
 
 console.log(name);
+
 
