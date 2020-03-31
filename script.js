@@ -1,40 +1,23 @@
-// 1)
-
-let lang = 'en',
-daysRu = ['Понедельник', 'Вторник', 'Среда', 'Чертверг', 'Пятница',
-'Суббота', 'Воскресенье'],
-daysEn = ['Sunday', 'Monday', 'Tuesday', 'Wednesday',
-'Thuesday', 'Friday', 'Saturday'];
-
- if (lang == 'ru') {
-     console.log(daysRu);
- } else {
-     console.log(daysEn);
-     
- };
-
- switch (lang) {
-     case 'ru':
-         console.log(daysRu);
-        break;
-      case 'en':
-          console.log(daysEn);
-          break;   
- };
-
-let objDays = {
-    "en": daysEn,
-    "ru": daysRu,
+let text = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+function foo(data){
+    if (typeof data !== 'string') {
+        alert('Введите только в виде строки')
+    };
+    
+    if (data.length >30) {
+        data = data.slice(0, 30) + '...';
+        console.log(data);
+        console.log(data.length);
+        
+    };
 };
+    
+foo(text);
 
-console.log(objDays[lang]);
 
 
-let namePerson = 'Даня';
 
-let name = (namePerson == 'Артем') ? 'Директор' : 
-(namePerson == 'Максим') ? 'Преподаватель' : 'студент';
 
-console.log(name);
+
 
 
