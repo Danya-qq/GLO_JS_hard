@@ -1,18 +1,31 @@
-let text = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-function foo(data){
-    if (typeof data !== 'string') {
-        alert('Введите только в виде строки')
-    };
-    
-    if (data.length >30) {
-        data = data.slice(0, 30) + '...';
-        console.log(data);
-        console.log(data.length);
-        
-    };
+// //1)
+let arr = [],
+numbers = '32,262,42344,9423521,841,123,29';
+
+
+for (let i=0; i<7; i++) {
+    arr.push(numbers.split(',')[i]);
 };
+
+arr.forEach(function(elem) {
+	if (elem[0] == 2 || elem[0] == 4) {
+        console.log(elem); 
+    };
     
-foo(text);
+});
+
+
+// 2)
+let n = 100;
+
+outer:
+for (i=2; i<n; i++) {
+    for (j=2; j<i; j++) {
+        if (i%j == 0) continue outer;
+    }
+    console.log(i + ' Делители этого числа: 1 и ' + j);
+    
+};
 
 
 
