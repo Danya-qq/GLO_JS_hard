@@ -1,31 +1,22 @@
-// //1)
-let arr = [],
-numbers = '32,262,42344,9423521,841,123,29';
+let date = new Date(),
+day  = date.getDay(),
+month = date.getMonth(),
+days = ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'],
+monthes = ['Января','Февраля', 'Марта', 'Апреля', 'Мая', 'Июня', 'Июля', 'Августа', 'Октября', 'Ноября', 'Декабря'];
 
 
-for (let i=0; i<7; i++) {
-    arr.push(numbers.split(',')[i]);
+function addZero(num) {
+	if (num >= 0 && num <= 9) {
+		return '0' + num;
+	} else {
+		return num;
+	}
 };
 
-arr.forEach(function(elem) {
-	if (elem[0] == 2 || elem[0] == 4) {
-        console.log(elem); 
-    };
-    
-});
 
+console.log(addZero(date.getDate()) + '.' + addZero(date.getMonth() + 1) + '.' + addZero(date.getFullYear()) + ' - ' + addZero(date.getHours()) + ':' + addZero(date.getMinutes()) + ':' + addZero(date.getSeconds()));
 
-// 2)
-let n = 100;
-
-outer:
-for (i=2; i<n; i++) {
-    for (j=2; j<i; j++) {
-        if (i%j == 0) continue outer;
-    }
-    console.log(i + ' Делители этого числа: 1 и ' + j);
-    
-};
+console.log('Сегодня' + ' ' +  days[day] + ', ' + date.getMonth() + ' ' + monthes[month] + ' ' + date.getFullYear()+ ' года' + ', ' + date.getHours() + ' часов ' + date.getMinutes()+ ' минут ' + date.getSeconds()+ ' секунды');
 
 
 
