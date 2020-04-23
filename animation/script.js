@@ -10,8 +10,8 @@ let flyAnimate = function(){
     flyInteval = requestAnimationFrame(flyAnimate);
     count++
     if (count <300){
-        corona.style.top = count +'px'
-        corona.style.left = count +'px'
+        corona.style.top = count*10 +'px'
+        corona.style.left = count*10 +'px'
 
     } else cancelAnimationFrame(flyInteval)
 }
