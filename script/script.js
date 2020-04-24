@@ -45,16 +45,17 @@ window.addEventListener('DOMContentLoaded', function(){
             
     };
 
-    countTimer('24 april 2020');
+    countTimer('25 april 2020');
 
 // Menu
    
    const toggleMenu = () => {
 
-    const btnMenu = document.querySelector('.menu'),
+    const body = document.querySelector('body'),
+        // btnMenu = document.querySelector('.menu'),
         menu = document.querySelector('menu'),
-        closeBtn = document.querySelector('.close-btn'),
-        menuItems = menu.querySelectorAll('ul>li'),
+        // closeBtn = document.querySelector('.close-btn'),
+        // menuItems = menu.querySelectorAll('ul>li'),
         menuAnchors = menu.querySelectorAll('ul>li>a'),
         mainBtn = document.querySelector('a[href="#service-block"]');
         
@@ -76,12 +77,27 @@ window.addEventListener('DOMContentLoaded', function(){
         const handlerMenu = () =>{
             menu.classList.toggle('active-menu') // используем свойства, описанные в css
         };
-        
-        btnMenu.addEventListener('click', handlerMenu);
-        closeBtn.addEventListener('click', handlerMenu);
 
-        menuItems.forEach((elem) => elem.addEventListener('click', handlerMenu))
-    
+        body.addEventListener('click', (event) =>{
+            let target = event.target;
+            target = target.closest('.menu')
+
+            
+             if (target){
+                return handlerMenu();
+             } else {
+                target = event.target;
+        
+                if (target.tagName === 'A') 
+                return handlerMenu();
+            }
+            
+            target = event.target.closest('.active-menu');
+
+            if (!target) menu.classList.remove('active-menu')
+        })
+        
+        
 }
 
 toggleMenu();
@@ -91,8 +107,26 @@ toggleMenu();
 
 const togglePopUp = () =>{
     const popUp = document.querySelector('.popup'),
-        popUpBtn = document.querySelectorAll('.popup-btn'),
-        popUpCloseBtn = document.querySelector('.popup-close');
+        popUpBtn = document.querySelectorAll('.popup-btn');
+
+    popUp.addEventListener('click', (event)  =>{
+        let target = event.target;
+    
+        if (target.classList.contains('popup-close')){
+             if (screen.width >768) {
+                popUp.style.display = `none`;
+                popUp.firstElementChild.style.left = '0%'
+                count = 0; 
+             } else {
+                popUp.style.display = `none`;
+            }
+        };
+            target = target.closest('.popup-content'); // при нажатии по таргету и ниже по иеарархии, будет возвращаться блок с классом .popup-content, иначе !!!null
+            if (!target) {
+                popUp.style.display = 'none';
+            } 
+                
+        })    
        
     let count = 0;
     let animate;
@@ -107,7 +141,6 @@ const togglePopUp = () =>{
         }        
     } 
     
-
     popUpBtn.forEach((elem) =>{
         elem.addEventListener('click', () =>{
             popUp.style.display = `block`; 
@@ -117,20 +150,65 @@ const togglePopUp = () =>{
             }
                  
         })  
-    }) 
-    popUpCloseBtn.addEventListener('click', () => {
-        if (screen.width >768) { // если экран больше 768, то 
-            popUp.style.display = `none`; // скрываем попап
-            popUp.firstElementChild.style.left = '0%' //и сдвигаем влево
-            count = 0; //сбрасываем счетчик
-        } else {
-            popUp.style.display = `none`; 
-
-        }   
-    });
-        
+    })     
 }
 
 togglePopUp();
 
 })
+
+// Табы
+
+const tabs = () =>{
+    const tabHeader = document.querySelector('.service-header'),
+        tab = tabHeader.querySelectorAll('.service-header-tab'),
+        tabContent = document.querySelectorAll('.service-tab');
+
+    const toggleTabContent = (index) =>{
+        for (let i=0; i<tabContent.length; i++){
+            if (index === i) {
+                tab[i].classList.add('active');
+                tabContent[i].classList.remove('d-none');
+            } else {
+                tab[i].classList.remove('active');
+                tabContent[i].classList.add('d-none');
+            }
+        }
+    }
+
+    tabHeader.addEventListener('click', (event) =>{
+        let target = event.target; // получаем элемент, на который кликнули
+            target = target.closest('.service-header-tab'); // метод closest ищет селектор и если находит,то возвращает элемент, если нет - null
+
+            if(target) {
+                tab.forEach((item, i) =>{
+
+                    if (item === target){
+                         toggleTabContent(i);   
+                    }
+            
+                });
+            } 
+
+            // !ОСТАВИЛ ЦИКЛ ДЛЯ ПОНИМАНИЯ
+        // while (target !== tabHeader){
+        //     console.log(target);
+
+        //     if (target.classList.contains('service-header-tab')){
+                
+        //         tab.forEach((item, i) =>{
+
+        //             if (item === target){
+        //                 toggleTabContent(i);   
+        //             }
+
+        //         });
+        //         return;   
+        //     }
+        //     target = target.parentNode;
+        // }
+        
+    });
+}
+
+tabs();
